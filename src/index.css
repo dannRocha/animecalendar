@@ -1,6 +1,7 @@
 * {
   --_1-color: #000;
   --_2-color: #a00;
+  --_3-color: #FFF;
 }
 
 body {
@@ -14,8 +15,3 @@ body {
   flex: 1;
 }
 
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
