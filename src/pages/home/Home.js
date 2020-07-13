@@ -8,7 +8,9 @@ function Home() {
     return (
         <Container>
             <Header title = 'Home'/>
-            <Main />
+            <Main 
+                subTitle = { `${new Date().toDateString().slice(0, 3) } List` } 
+            />
             <BarBottom />
         </Container>
     )

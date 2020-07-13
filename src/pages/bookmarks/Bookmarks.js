@@ -7,8 +7,8 @@ import BarBottom from '../components/BarBottom/BarBottom.js'
 function Bookmarks() {
     return (
         <Container>
-            <Header title = 'Bookmarks'/>
-            <Main />
+            <Header title = 'Bookmarks' />
+            <Main subTitle = {'List'}/>
             <BarBottom />
         </Container>
     )
