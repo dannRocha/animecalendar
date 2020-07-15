@@ -13,8 +13,8 @@ const Card = styled( Link )`
     display: grid;
     grid-template-columns: 50% 50%;
     margin: 10px 0;
-    justify-content: space-space-around;
-    
+    box-sizing: border-box;   
+
     main {
         display: grid;
         grid-template-rows: 80% 20%;
@@ -50,6 +50,7 @@ const Card = styled( Link )`
         img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
 
         figcaption {                
@@ -70,7 +71,7 @@ const Card = styled( Link )`
     }
 `
 
-export default function ( { anime }){
+export default function( { anime } ) {
 
     return ( 
         <Card 
@@ -79,19 +80,26 @@ export default function ( { anime }){
         > 
             <main>
                 <header>
-                    <h3> { anime.title }</h3>
-                    <div> { anime.genres.map(genre => (
-                        <p className = 'tag'>#{ genre.name }</p>   
+                    <h3> { anime?.title }</h3>
+                    <div> { anime?.genres.map(genre => (
+                        <p 
+                            key = { `${anime?.mal_id}${ genre?.name }`} 
+                            className = 'tag'>#{ genre?.name }
+                        </p>   
                     )) } 
                     </div>
                 </header>
                 <section>
-                    <p> Episodes: {anime.episodes}</p>
+                    <p> Episodes: {anime?.episodes}</p>
                 </section>
             </main>
             <figure>
-                <img src = {anime.image_url} />
-                <figcaption> Cover: {anime.title}</figcaption>
+                <img 
+                    src = {anime?.image_url} 
+                    alt = {`Cover: ${ anime?.title }`}
+                    loading = 'lazy'
+                />
+                <figcaption> Cover: {anime?.title}</figcaption>
             </figure>
         </Card> )
 }

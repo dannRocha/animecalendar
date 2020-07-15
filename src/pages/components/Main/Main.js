@@ -64,7 +64,9 @@ export default function ({ animes, subTitle }){
         <Main>
             <header> {subTitle ?? 'subTitle'}</header>
             <section>
-                {animes?.map(anime => <Card anime = { anime } />) }
+                {animes?.map(( anime, index ) => 
+                    <Card key = {`_@${anime?.mal_id + index}`} anime = { anime } />) 
+                }
             </section>
         </Main>
     )
