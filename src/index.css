@@ -2,6 +2,9 @@
   --_1-color: #000;
   --_2-color: #a00;
   --_3-color: #FFF;
+  outline: none;
+  box-sizing: border-box;
+  word-wrap:  break-word;
 }
 
 body {
