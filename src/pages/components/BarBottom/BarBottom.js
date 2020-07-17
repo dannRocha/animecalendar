@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link as LinkRouter } from 'react-router-dom'
-import { FaHome as Home, FaBookmark as Bookmark } from 'react-icons/fa';
+import { FaHome as Home, FaBookmark as Bookmark } from 'react-icons/fa'
 
 import styled from 'styled-components'
 
@@ -8,6 +8,7 @@ import styled from 'styled-components'
 const BarBottom = styled.footer`
     background: yellow;
     width: 100%;
+    border-top: 1px solid var(--_2-color);
     nav {
 
         display: grid;
