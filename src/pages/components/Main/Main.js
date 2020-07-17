@@ -1,21 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
-
 import Card from '../Card/Card.js'
+import Main from './style.js'
 
-const Main = styled.main`
-    
-    background: var(--_1-color);
-    width: 100%;
-    overflow-y: auto;
-    
-    header {
-        background: var(--_1-color);
-        text-align: center;
-        font-size: 30pt;
-        color: #FFF;
-    }
-`
 
 export default function ({ animes, subTitle }){
     
@@ -64,8 +50,8 @@ export default function ({ animes, subTitle }){
         <Main>
             <header> {subTitle ?? 'subTitle'}</header>
             <section>
-                {animes?.map(( anime, index ) => 
-                    <Card key = {`_@${anime?.mal_id + index}`} anime = { anime } />) 
+                {animes?.map( ( anime, index ) => 
+                    <Card key = {`_@${anime?.mal_id + index}`} anime = { anime } /> ) 
                 }
             </section>
         </Main>

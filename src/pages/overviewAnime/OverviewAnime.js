@@ -2,116 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Container from '../../components/container/Container.js'
 import Header from '../components/Header/Header.js'
 import BarBottom from '../components/BarBottom/BarBottom.js'
-import styled from 'styled-components'
-import { FiHeart } from 'react-icons/fi'
+import OverViewAnime, { CustomFavoriteIcon } from './style.js'
 
-const OverViewAnime =  styled.main`
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: auto;
-    overflow-y: auto;
-
-    position: relative;
-    
-    figure {
-        margin: 0;
-        position: relative;
-        display: flex;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        figcaption {
-            display: flex;
-            position: absolute;
-            justify-content: center;
-            align-items: center;
-            background: var(--_1-color);
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-
-            color: #FFF;
-            font-size: 20pt;
-            transition: .3s;
-
-
-            :hover {
-                cursor: crosshair;
-                opacity: 0.7;
-            }
-        }
-    }
-
-    section {
-        background: var(--_1-color);
-
-        header {
-            h1 {
-                font-size: 20pt;
-                color: var(--_3-color);
-            }
-        }
-
-        section {
-
-            border-top: 2px solid var(--_3-color);
-            color: var(--_3-color);
-
-            ul {
-                li.topics {
-                    font-weight: bold;
-                    .tag {
-                        margin: 0 2px;
-                        background: var(--_2-color);
-                    }
-                }
-                border-bottom: 2px solid var(--_3-color);
-                margin: 0;
-                padding: 10px 30px;
-
-            }
-
-            details {
-            
-                cursor: pointer;
-                background: var(--_2-color);
-                padding: 10px 0;
-                color: var(--_3-color);
-
-                summary {
-                    font-weight: bold;
-                }
-                
-                p {
-                    text-indent: 20pt;
-                    text-align: justify;
-                    padding: 0 10pt;
-                }
-            }
-        }
-    }
-`
-
-const FavoriteIcon =  styled( FiHeart )`
-    
-    position: fixed;
-    top: 20%;
-    right: 8%;
-    margin: 0;
-    padding: 0;
-    font-size: 40pt;
-    color: var(--_2-color);
-    fill: ${ props => ( props?.enable === 'true' ) ? '#a00' : '#0000' };
-
-    :hover {
-        cursor: pointer;
-        fill: var(--_2-color);
-    }
-`
 
 export default function( props ) {
    
@@ -175,9 +67,9 @@ export default function( props ) {
                             <p> {anime?.synopsis}</p>                                
                         </details>
                     </section>
-                    <FavoriteIcon 
+                    <CustomFavoriteIcon 
                         enable = { statusFavoriteIcon }
-                        onClick = { () => 
+                        onClick = { e => 
                             setStatusFavoriteIcon( `${ !(statusFavoriteIcon === 'true')}` )
                         } 
                     />
