@@ -6,12 +6,14 @@ class Store
         this._url = 'http://api.jikan.moe/v3/schedule'
         this._store = null
         this._bookmark = null
+
+        this._create()
     }
 
 
     async _syncBookmark()
     {
-        this._bookmark = localStorage.getItem( 'bookmark' )
+        this._bookmark = JSON.parse( localStorage.getItem( 'bookmark' ) )
     }
 
 
@@ -30,14 +32,14 @@ class Store
     }
 
 
-    async create()
+    async _create()
     {
         if( !this._store && !localStorage['store'] )
             this._syncStore(true)
 
         if( !this._bookmark && !localStorage['bookmark'] )
         {
-            localStorage.setItem( 'bookmark', [] )
+            localStorage.setItem( 'bookmark', '{}' )
             this._syncBookmark()
         }
     }
@@ -72,7 +74,7 @@ class Store
 
     /**
      * 
-     * @param {string} weekDay 
+     * @param {string} weekday 
      */
     find( weekday )
     {
@@ -106,8 +108,18 @@ class Store
      * @param {string} key 
      * @param {string} data 
      */
-    setBookmark( key, data )
+    addBookmark( key, data )
     {
+    	this.sync('bookmark')
+    	this._bookmark[key] =  data
+    	localStorage.setItem('bookmark', JSON.stringify( this._bookmark ) )
+    }
+
+    removeBookmark(key)
+    {
+    	this.sync('bookmark')
+    	delete this._bookmark[key]
+    	localStorage.setItem('bookmark', JSON.stringify( this._bookmark ) )
     }
 
     get store()
@@ -118,12 +130,24 @@ class Store
 
     get bookmark()
     {
-        return this._bookmark
+		this._syncBookmark()
+
+		return this._bookmark
+		/*
+		if( !this._bookmark )
+			return []
+			
+        return Object.entries( this._bookmark )
+        	?.flat()
+        	.filter(item => !Number.isInteger( Number.parseInt(item) ))
+		*/
     }
 }
 
 
 let store = new Store()
-    store.create()
+
 
 export default store
+export { default as Time } from './utils/time/Time.js'
+export { default as Strings } from './utils/strings/Strings.js'
