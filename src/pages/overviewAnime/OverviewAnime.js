@@ -4,16 +4,21 @@ import Header from '../components/Header/Header.js'
 import BarBottom from '../components/BarBottom/BarBottom.js'
 import OverViewAnime, { CustomFavoriteIcon } from './style.js'
 
+import store, { Time, Strings } from '../../core/mod.js'
+
+
 
 export default function( props ) {
-   
+
+    const message = 'Unknown'
     const { anime } = props?.location 
     const [ statusFavoriteIcon, setStatusFavoriteIcon ] = useState('false');
     
 
     useEffect( () => {
-        console.log( 'Novo estado do Icone: ', statusFavoriteIcon )
-    
+
+    	setStatusFavoriteIcon( `${ !!store.bookmark?.hasOwnProperty( anime?.mal_id )}` )		
+        
     }, [ statusFavoriteIcon ] )
     
     
@@ -24,10 +29,10 @@ export default function( props ) {
                 <figure>
                     <img 
                         src = {anime?.image_url} 
-                        alt = {`Cover: ${ anime?.title }`}
+                        alt = {`Cover: ${ anime?.title ?? message }`}
                         loading = 'lazy'
                     />
-                    <figcaption >Cover: {anime?.title}</figcaption>
+                    <figcaption >Cover: {anime?.title ?? message}</figcaption>
                 </figure>
                 <section>
                     <header>
@@ -35,7 +40,7 @@ export default function( props ) {
                     </header>
                     <section>
                         <ul>
-                            <li className='topics' > Episodes: {anime?.episodes} </li>
+                            <li className='topics' > Episodes: {anime?.episodes ?? message} </li>
                             <li className='topics' >
                                 Genres: 
                                 {
@@ -47,9 +52,9 @@ export default function( props ) {
                                     )
                                 }
                             </li>
-                            <li className='topics' > Source: {anime?.source} </li>
+                            <li className='topics' > Source: {anime?.source ?? message} </li>
                             <li className='topics' >
-                                Day: { new Date(anime?.airing_start).toDateString().slice(0, 3) } 
+                                Day: {Strings.capitalize( Time.weekday ) } 
                             </li>
                             <li className='topics' >
                                 Producers: 
@@ -69,8 +74,17 @@ export default function( props ) {
                     </section>
                     <CustomFavoriteIcon 
                         enable = { statusFavoriteIcon }
-                        onClick = { e => 
-                            setStatusFavoriteIcon( `${ !(statusFavoriteIcon === 'true')}` )
+                        onClick = { 
+                             e => { 
+                                e.preventDefault()
+
+								if( store.bookmark?.hasOwnProperty( anime.mal_id ) )
+									store.removeBookmark(anime.mal_id)
+								else
+									store.addBookmark(anime.mal_id, anime )
+
+                                setStatusFavoriteIcon( `${ !(statusFavoriteIcon === 'true')}` )
+							}
                         } 
                     />
                 </section>

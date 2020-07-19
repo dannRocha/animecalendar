@@ -51,11 +51,13 @@ const  CardStyle = styled( Link )`
         display: flex;
         align-items: center;
         justify-content: center;
-        
+     
+
         img {
 
             width: 100%;
             height: 100%;
+            min-height: 280px;
             object-fit: cover;
         }
 
@@ -73,6 +75,9 @@ const  CardStyle = styled( Link )`
             width: 100%;
             height: 100%;
             transition: .3s;
+            box-sizing: border-box;
+   			text-overflow: ellipsis;
+			word-break: break-all;
 
             svg {
                 color: ${

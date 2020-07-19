@@ -6,6 +6,7 @@ const BookmarkList = styled.section`
     background: var(--_1-color);
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 `
 
 const EmptyStyle = styled.section`

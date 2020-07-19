@@ -4,9 +4,7 @@ import Header from '../components/Header/Header.js'
 import Main from '../components/Main/Main.js'
 import BarBottom from '../components/BarBottom/BarBottom.js'
 
-import store from '../../core/mod.js'
-import Time from '../../core/utils/time/Time.js'
-import Strings from '../../core/utils/strings/Strings.js'
+import store, { Time, Strings } from '../../core/mod.js'
 
 
 function Home() {
