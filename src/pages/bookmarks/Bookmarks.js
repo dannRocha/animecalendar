@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '../../components/container/Container.js'
 import Header from '../components/Header/Header.js'
 import BarBottom from '../components/BarBottom/BarBottom.js'
 import { MdLayersClear as EmptyListIcon } from 'react-icons/md';
 import BookmarkList, { EmptyStyle } from './style.js'
 
+import store from '../../core/mod.js'
 
 function Empty(){
     return (
@@ -17,14 +18,15 @@ function Empty(){
 
 function Bookmarks() {
 
-    let anime = []
+    const [ animeData, setAnimeData ] = useState( store.bookmark )
+
 
     return (
         <Container>
             <Header title = 'Bookmarks' />
             {
-                ( !!anime.length ) 
-                    ? <BookmarkList data = { anime } />
+                ( !!animeData?.length ) 
+                    ? <BookmarkList data = { animeData } />
                     : <Empty />
             }
             <BarBottom />
