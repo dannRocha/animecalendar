@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Container from '../../components/container/Container.js'
 import Header from '../components/Header/Header.js'
 import BarBottom from '../components/BarBottom/BarBottom.js'
 import Main from '../components/Main/Main.js'
-import Card from '../components/Card/Card.js'
 import { MdLayersClear as EmptyListIcon } from 'react-icons/md';
-import BookmarkList, { EmptyStyle } from './style.js'
+import { EmptyStyle } from './style.js'
 
-import store from '../../core/mod.js'
+
+import { useBookmark } from '../../context/bookmarkContext.js'
+
 
 function Empty(){
     return (
@@ -18,34 +19,21 @@ function Empty(){
     )
 }
 
+
 function Bookmarks() {
 
-    const [ animeData, setAnimeData ] = useState([])
-
-	useEffect(() => {
-		var data = Object.entries( store.bookmark )
-				        ?.flat()
-				        .filter(item => !Number.isInteger( Number.parseInt(item) ) ) 
-				        
-		setAnimeData(data)
-	
-	}, store.bookmark)
-
-
+	const { dataBookmark } = useBookmark()
 
     return (
-        <Container>
-            <Header title = 'Bookmarks' />
-            {
-                ( !!animeData?.length ) 
-                    ? <Main
-                    	subTitle = {'List'} 
-                    	animes  = { animeData }
-                      />
-                    : <Empty />
-            }
-            <BarBottom />
-        </Container>
+            <Container>
+                <Header title = 'Bookmarks' />
+                {
+                    ( !!dataBookmark?.length )
+                		 ? < Main subTitle = { 'List' } animes = { dataBookmark }/>
+                         : <Empty />
+            	}
+                <BarBottom />
+            </Container>
     )
 }
 

@@ -3,9 +3,9 @@ import Card from '../Card/Card.js'
 import Main from './style.js'
 
 
-export default function ({ animes, subTitle }){
+export default function ( { animes, subTitle }){
 
-    
+	
     return (
         <Main>
             <header> {subTitle ?? 'subTitle'}</header>

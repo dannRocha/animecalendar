@@ -1,23 +1,26 @@
-import React,{ useState, useEffect } from 'react'
+import React,{ useState, useEffect, memo } from 'react'
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon.js'
 import Card from './style.js'
 
 import store from '../../../core/mod.js'
+import { useBookmark } from '../../../context/bookmarkContext.js'
 
-
-export default function( { anime, onClick } ) {
+function  _Card( { anime } ) {
 
     const [ statusFavoriteIcon, setStatusFavoriteIcon ] = useState('false');
-
+	const  { addOrRemoveBookmark  } = useBookmark()
 	const message = 'Unknown'
+
     
     useEffect( () => {
     
  		setStatusFavoriteIcon( `${ !!store.bookmark?.hasOwnProperty( anime.mal_id )}` )		
     
     }, [ statusFavoriteIcon ] )
-    
 
+
+	
+  
     return ( 
         <Card 
             className = 'card' 
@@ -53,16 +56,17 @@ export default function( { anime, onClick } ) {
                            e => {
                                 e.preventDefault()
 
-								if( store.bookmark?.hasOwnProperty( anime.mal_id ) )
-									store.removeBookmark(anime.mal_id)
-								else
-									store.addBookmark(anime.mal_id, anime )
-
                                 setStatusFavoriteIcon( `${ !(statusFavoriteIcon === 'true')}` )
+                                addOrRemoveBookmark(anime)
+                                
                             }
                         }
                     />
                 </figcaption>
             </figure>
         </Card> )
+
 }
+
+
+export default memo( _Card )

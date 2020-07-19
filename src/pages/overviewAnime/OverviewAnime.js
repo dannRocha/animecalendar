@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Container from '../../components/container/Container.js'
 import Header from '../components/Header/Header.js'
 import BarBottom from '../components/BarBottom/BarBottom.js'
 import OverViewAnime, { CustomFavoriteIcon } from './style.js'
 
 import store, { Time, Strings } from '../../core/mod.js'
-
+import { useBookmark } from '../../context/bookmarkContext.js'
 
 
 export default function( props ) {
 
     const message = 'Unknown'
-    const { anime } = props?.location 
+    const { anime } = useLocation()
     const [ statusFavoriteIcon, setStatusFavoriteIcon ] = useState('false');
-    
+    const { addOrRemoveBookmark } = useBookmark()
+
 
     useEffect( () => {
 
@@ -76,13 +78,7 @@ export default function( props ) {
                         enable = { statusFavoriteIcon }
                         onClick = { 
                              e => { 
-                                e.preventDefault()
-
-								if( store.bookmark?.hasOwnProperty( anime.mal_id ) )
-									store.removeBookmark(anime.mal_id)
-								else
-									store.addBookmark(anime.mal_id, anime )
-
+								addOrRemoveBookmark(anime)
                                 setStatusFavoriteIcon( `${ !(statusFavoriteIcon === 'true')}` )
 							}
                         } 
