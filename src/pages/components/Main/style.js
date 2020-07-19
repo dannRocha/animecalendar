@@ -14,5 +14,12 @@ const Main = styled.main`
         color: #FFF;
     }
 `
+export const Icon = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	color: #FFF;
+	font-size: 50pt;
+`
 
 export default Main

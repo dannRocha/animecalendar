@@ -1,14 +1,14 @@
 import React,{ useState, useEffect, memo } from 'react'
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon.js'
 import Card from './style.js'
-
 import store from '../../../core/mod.js'
 import { useBookmark } from '../../../context/bookmarkContext.js'
+
 
 function  _Card( { anime } ) {
 
     const [ statusFavoriteIcon, setStatusFavoriteIcon ] = useState('false');
-	const  { addOrRemoveBookmark  } = useBookmark()
+	const  { dataBookmark, addOrRemoveBookmark  } = useBookmark()
 	const message = 'Unknown'
 
     
@@ -16,7 +16,7 @@ function  _Card( { anime } ) {
     
  		setStatusFavoriteIcon( `${ !!store.bookmark?.hasOwnProperty( anime.mal_id )}` )		
     
-    }, [ statusFavoriteIcon ] )
+    }, [ statusFavoriteIcon, dataBookmark ] )
 
 
 	

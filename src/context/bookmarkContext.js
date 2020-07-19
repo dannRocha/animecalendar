@@ -10,18 +10,38 @@ export default function BookmarkProvider( { children } )
 
 	const [ dataBookmark, setDataBookmark ] = useState( [] )
 
-	function addOrRemoveBookmark( anime )
+	function addOrRemoveBookmark( anime, action )
 	{
 
-		if( store.bookmark?.hasOwnProperty( anime.mal_id ) )
+		function _addBookmark()
+		{
+			store.addBookmark( anime.mal_id, anime )
+			setDataBookmark( [...dataBookmark, anime] )	
+		}
+
+		function _removeBookmark()
 		{
 			store.removeBookmark(anime.mal_id)
 			setDataBookmark( dataBookmark.filter( bookmark => bookmark.mal_id !== anime.mal_id ) )
 		}
-		else
+		
+		function _toogle()
 		{
-			store.addBookmark( anime.mal_id, anime )
-			setDataBookmark( [...dataBookmark, anime] )	
+		    if( store.bookmark?.hasOwnProperty( anime.mal_id ) )
+		    	_removeBookmark()
+		    else
+		    	_addBookmark()
+		}
+
+
+		switch(action)
+		{
+			default: 
+				_toogle(); break;
+			case 'add':   
+				 _addBookmark(); break;
+			case 'remove': 
+				_removeBookmark(); break;
 		}
 
 	}
