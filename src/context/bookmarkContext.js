@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
-import store from '../core/mod.js'
+import { Store } from '../core/mod.js'
 
 
 const BookmarkContext = createContext()
@@ -9,6 +9,7 @@ export default function BookmarkProvider( { children } )
 {
 
 	const [ dataBookmark, setDataBookmark ] = useState( [] )
+	const store = new Store()
 
 	function addOrRemoveBookmark( anime, action )
 	{

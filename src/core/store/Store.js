@@ -84,29 +84,23 @@ export default class Store
      * 
      * @param {string} weekday 
      */
-    find( weekday )
+    async find( weekday )
     {
-        let id = null
-        let call = 0
-        return new Promise( ( resolve, reject ) => {
-            
-            this.sync( 'store' )
-            
-            id = setInterval(() => {
-                call++
+        this.sync()
 
+        if( !!this._store )
+            return this._store[weekday] 
+
+        return new Promise( ( resolve, reject ) => {
+        
+            let id = setInterval( () => {
                 if( !!this._store )
                 {
                     resolve( this._store[weekday] )   
                     clearInterval(id)
                 }
 
-                if( call === 10)
-                {
-                    clearInterval(id)
-                    reject()
-                }
-            }, 1000)
+            }, 100)
         } )
     }
 

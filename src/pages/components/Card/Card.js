@@ -1,7 +1,7 @@
 import React,{ useState, useEffect, memo } from 'react'
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon.js'
 import Card from './style.js'
-import store from '../../../core/mod.js'
+import { Store } from '../../../core/mod.js'
 import { useBookmark } from '../../../context/bookmarkContext.js'
 
 
@@ -9,7 +9,8 @@ function  _Card( { anime } ) {
 
     const [ statusFavoriteIcon, setStatusFavoriteIcon ] = useState('false');
 	const  { dataBookmark, addOrRemoveBookmark  } = useBookmark()
-	const message = 'Unknown'
+    const store = new Store()
+    const message = 'Unknown'
 
     
     useEffect( () => {

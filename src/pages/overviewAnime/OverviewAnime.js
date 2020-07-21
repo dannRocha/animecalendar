@@ -5,7 +5,7 @@ import Header from '../components/Header/Header.js'
 import BarBottom from '../components/BarBottom/BarBottom.js'
 import OverViewAnime, { CustomFavoriteIcon } from './style.js'
 
-import store, { Time, Strings } from '../../core/mod.js'
+import { Time, Strings, Store } from '../../core/mod.js'
 import { useBookmark } from '../../context/bookmarkContext.js'
 
 
@@ -15,6 +15,7 @@ export default function( props ) {
     const { anime } = useLocation()
     const [ statusFavoriteIcon, setStatusFavoriteIcon ] = useState('false');
     const { addOrRemoveBookmark } = useBookmark()
+    const store = new Store()
 
 
     useEffect( () => {

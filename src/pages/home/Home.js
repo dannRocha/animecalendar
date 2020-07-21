@@ -4,13 +4,14 @@ import Header from '../components/Header/Header.js'
 import Main from '../components/Main/Main.js'
 import BarBottom from '../components/BarBottom/BarBottom.js'
 
-import store, { Time, Strings } from '../../core/mod.js'
+import { Time, Strings, Store } from '../../core/mod.js'
 
 
 function Home() {
     
     
     const [ animeData, setAnimeData ] = useState([])
+    const store = new Store()
 
     
     useEffect(() => {
@@ -26,7 +27,7 @@ function Home() {
 
     return (
         <Container>
-            <Header title = 'Home'/>
+            <Header title = 'Today'/>
             <Main 
                 subTitle = {
                     <time> 
