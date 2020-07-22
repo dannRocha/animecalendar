@@ -33,7 +33,7 @@ const Link = styled( LinkRouter )`
     align-items: center;
     background: var(--_1-color);
     
-    :hover {
+    :hover, :active {
         transition: 500ms;
         background: #111;
 
