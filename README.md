@@ -1,4 +1,4 @@
-# Animecalender
+# Animecalendar
 *Aplicação Web* pra acompanhar alguns laçamentos diário de animes;
 ## Demo
 ![](demo/run.gif)
