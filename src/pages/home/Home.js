@@ -28,6 +28,7 @@ function Home() {
     return (
         <Container>
             <Header title = 'Today'/>
+            {/* <SideMenu /> */}
             <Main 
                 subTitle = {
                     <time> 

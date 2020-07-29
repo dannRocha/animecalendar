@@ -104,6 +104,26 @@ export default class Store
         } )
     }
 
+    async findAll()
+    {
+        this.sync()
+
+        if( !!this._store )
+            return this._store 
+
+        return new Promise( ( resolve, reject ) => {
+        
+            let id = setInterval( () => {
+                if( !!this._store )
+                {
+                    resolve( this._store )   
+                    clearInterval(id)
+                }
+
+            }, 100)
+        } )
+    }
+
 
     /**
      * 

@@ -11,6 +11,8 @@ export default createGlobalStyle`
 	  --scroll-color_1: #660000;
 	  --scroll-color_2: #a00;
 	
+	  margin: 0;
+	  padding: 0;
 	  outline: none;
 	  box-sizing: border-box;
 	  word-wrap:  break-word;
@@ -39,6 +41,9 @@ export default createGlobalStyle`
 	  border-radius: 20px;
 	}
 
+	a {
+        text-decoration: none;
+    }
 	
 	body {
 	

@@ -11,7 +11,8 @@ const Header = styled.header`
     time {
         font-weight: bold;
         font-size: 12pt;
-        padding: 10px;    
+        padding: 0;
+        margin: 10px;
     }
 
     h1 {
@@ -25,7 +26,7 @@ const Header = styled.header`
         font-size: 3.5em;
     }
 
-    @media only screen and (max-width: 360px) {    
+    @media only screen and (max-width: 400px) {    
         
         h1 {
             font-size: 2.5em;

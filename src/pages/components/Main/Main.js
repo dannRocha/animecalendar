@@ -9,6 +9,7 @@ import Loading from '../Loading/Loading.js'
 import './swipeCustomStyle/index.css'
 
 
+
 export default function ( { animes, subTitle }){
 
 	const { addOrRemoveBookmark } = useBookmark()
@@ -16,12 +17,15 @@ export default function ( { animes, subTitle }){
 	useEffect(() => {
 		setLoading( !!animes?.lenght )
 	}, [ animes ] )
+
+
     return (
         <Main>
-            <header> {subTitle ?? 'subTitle'}</header>
+            <header> <p>{subTitle ?? 'subTitle'}
+				</p>
+			</header>
             <section>
 				{
-
 					( loading )
 						? <Loading delay={ 1 } /> 
 						: (
