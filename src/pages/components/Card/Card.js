@@ -8,15 +8,20 @@ import { useBookmark } from '../../../context/bookmarkContext.js'
 function  _Card( { anime } ) {
 
     const [ statusFavoriteIcon, setStatusFavoriteIcon ] = useState('false');
-	const  { dataBookmark, addOrRemoveBookmark  } = useBookmark()
+    const [ genresList, setGenresList ] = useState([])
+    const  { dataBookmark, addOrRemoveBookmark  } = useBookmark()
     const store = new Store()
     const message = 'Unknown'
 
     
+    function limitQuantityofGenres(){
+        setGenresList(anime.genres.slice( 0, 3 ))
+    }
+    
     useEffect( () => {
     
  		setStatusFavoriteIcon( `${ !!store.bookmark?.hasOwnProperty( anime.mal_id )}` )		
-    
+         limitQuantityofGenres()
     }, [ statusFavoriteIcon, dataBookmark ] )
 
 
@@ -31,12 +36,15 @@ function  _Card( { anime } ) {
             <main>
                 <header>
                     <h3> { anime?.title ?? message }</h3>
-                    <div> { anime?.genres.map(genre => (
-                        <p 
-                            key = { `${anime?.mal_id}${ genre?.name }`} 
-                            className = 'tag'>#{ genre?.name ?? message }
-                        </p>   
-                    )) } 
+                    <div> 
+                    { 
+                        genresList.map(genre => (
+                            <p 
+                                key = { `${anime?.mal_id}${ genre?.name }`} 
+                                className = 'tag'>#{ genre?.name ?? message }
+                            </p>   
+                        )) 
+                    } 
                     </div>
                 </header>
                 <section>
