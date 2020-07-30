@@ -1,5 +1,10 @@
 import React from 'react'
-import { FaHome as Home, FaBookmark as Bookmark } from 'react-icons/fa'
+import { 
+    FaHome as HomeIcon,
+    FaBookmark as BookmarkIcon
+}
+from 'react-icons/fa'
+
 import BarBottom, { Link } from './style.js'
 
 
@@ -9,11 +14,11 @@ export default function () {
         <BarBottom >
             <nav>
                 <Link to = '/' > 
-                    <Home /> 
+                    <HomeIcon /> 
                     <span>Home</span>
                 </Link>
                 <Link to = '/bookmarks'>
-                    <Bookmark />
+                    <BookmarkIcon />
                     <span>Bookmark</span>
                 </Link>
             </nav>
