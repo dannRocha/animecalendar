@@ -7,7 +7,7 @@ export default class Strings {
      */
     static capitalize( string )
     {
-        if( typeof string !== 'string' || !string )
+        if( typeof string !== 'string' )
             throw new TypeError('Strings.capitalize expects a string as a parameter')
         
 
