@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 
 import {  
-    MdExpandMore as ExpandMore,
-    MdExpandLess as ExpandLess 
+    MdExpandMore as ExpandMoreIcon,
+    MdExpandLess as ExpandLessIcon 
 } from 'react-icons/md'
 
 import { 
@@ -24,7 +24,7 @@ import Aside from './style.js'
 export default function() {
     
     const [ visible, setVisible ] = useState( false )
-    const [ expand, setExpand ] = useState( false )
+    const [ expand, setExpand ] = useState( true )
     const store = new Store();
 
     const { pathname } = useLocation()
@@ -44,6 +44,24 @@ export default function() {
 
         load()
 
+    }, [pathname])
+
+
+    useEffect(() => {
+
+        document.addEventListener( "mousedown", event => {
+            
+            event.preventDefault()
+            
+            const { offsetLeft, offsetWidth } = document.querySelector('.side-menu')
+            
+            if( !offsetLeft && event.x > offsetWidth )
+                setVisible( false )
+        
+        });
+
+        return () => document.removeEventListener( "mousedown", () => {}  )
+
     }, [])
 
     function toogleExpandListDay() {
@@ -52,10 +70,12 @@ export default function() {
 
     return (
         <Aside 
+            className = 'side-menu' 
             visible = { visible }
-            expand = { expand }
+            expand = { expand }    
         >
-            <nav>
+            <nav
+            > 
                 <header>
                     { 
                         ( visible )
@@ -65,24 +85,27 @@ export default function() {
                 </header>
                 <section>
                     <ul>
-                        <p 
-                            onClick = { toogleExpandListDay }
-                        >    
+                        <p onClick = { toogleExpandListDay } >    
                             <CalendarIcon />
                             Day 
                             {( expand )
-                                ? <ExpandMore /> 
-                                : <ExpandLess />} 
+                                ? <ExpandMoreIcon /> 
+                                : <ExpandLessIcon />} 
                         </p>
                         {
                             ( expand) 
                             ? listDays.map(day => 
-                                <Link to = ''>
-                                    <li className = {
-                                        ( !! pathname.match( day ) )
-                                        ? 'enable'
-                                        : null
-                                    } >
+                                <Link 
+                                    to = { { pathname: `/animes/${String( day ).toLowerCase()}`}} 
+                                    onClick = { () => setVisible( !visible ) }
+                                >
+                                    <li 
+                                        // className = {
+                                        //     ( !pathname.match(/day/ig) )
+                                        //         ? 'enable'
+                                        //         : null
+                                        //  } 
+                                    >
                                         <SunIcon />
                                         { day }
                                     </li>
