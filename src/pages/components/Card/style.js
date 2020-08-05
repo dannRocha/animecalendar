@@ -20,8 +20,13 @@ const  CardStyle = styled( Link )`
         padding: 15px;
 
         header {
-
-            font-size: 15pt;
+            font-size: 1em;
+            h3 {
+                /*word-break: break-all;*/ 
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
 
             .tag {
                 
@@ -94,7 +99,7 @@ const  CardStyle = styled( Link )`
             }
 
             :hover {
-                background: #000a;
+                background: var(--_1-color);
                 color: var(--_3-color);
             }
 
