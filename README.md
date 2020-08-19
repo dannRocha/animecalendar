@@ -7,7 +7,10 @@
 *Aplicação Web* pra acompanhar alguns laçamentos diário de animes.
 
 ## Demo
-![](demo/run.gif)
+<p align="center">
+  <img src="demo/run.gif" /><br/>
+  <strong>Caso não seja exibido o gif recarregue a página.</strong>
+</p>
 
 ## Start
 #### Ferramentas
