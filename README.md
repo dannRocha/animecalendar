@@ -11,9 +11,9 @@
 
 ## Start
 #### Ferramentas
-* :pushpin: *node@12.+*
-* :pushpin: *npm@6.+*
-* :pushpin: *git@2.+*
+* :pushpin: *![node@12.+](http://img.shields.io/badge/Node.js@12.+-%230077B6.svg?&style=flat-square&logo=node.js&logoColor=white&color=60975a&labelColor=313131)*
+* :pushpin: *![npm@6.+](http://img.shields.io/badge/NPM@6.+-%230077B6.svg?&style=flat-square&logo=npm&logoColor=white&color=c12127&labelColor=000)*
+* :pushpin: *![git@2.+](http://img.shields.io/badge/Git@2.+-%230077B6.svg?&style=flat-square&logo=git&logoColor=white&color=3f2f00&labelColor=e94e31)*
 
 #### Repositório 
 ```sh 
@@ -26,7 +26,7 @@ No diretório do repositório
 ```sh
 npm install
 ```
-* *Inicalização do servidor de desenvolvimento*
+* *Inicialização do servidor de desenvolvimento*
 ```sh
 npm start
 ```
